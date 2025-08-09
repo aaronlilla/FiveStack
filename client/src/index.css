@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-obsidian-950 text-white;
+    background: linear-gradient(135deg, rgba(15, 15, 18, 0.95) 0%, rgba(24, 24, 27, 0.95) 50%, rgba(39, 39, 42, 0.95) 100%);
+    background-attachment: fixed;
+  }
+  
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #fbbf24 #27272a;
+  }
+  
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    @apply bg-obsidian-800;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gold-500 rounded-full;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold-600;
+  }
+}
+
+@layer components {
+  /* Page background for non-landing pages */
+  .page-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    background-color: #0f0f12;
+  }
+
+  .page-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.05;
+    z-index: -1;
+  }
+
+  /* Background classes for dynamic application */
+  .main-background {
+    position: relative;
+  }
+
+  .main-background::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Hero section background for landing page */
+  .hero-background {
+    position: relative;
+  }
+
+  .hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 15, 18, 0.85) 0%, rgba(24, 24, 27, 0.85) 30%, rgba(251, 191, 36, 0.1) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.7;
+    z-index: -1;
+  }
+  /* Premium Button Styles */
+  .btn-primary {
+    @apply bg-gold-gradient text-obsidian-950 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-gold;
+    @apply hover:shadow-gold-lg hover:scale-105 transform;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+  
+  .btn-secondary {
+    @apply bg-obsidian-800 hover:bg-obsidian-700 text-white border border-gold-500 font-medium py-3 px-6 rounded-lg transition-all duration-300;
+    @apply hover:border-gold-400 hover:shadow-gold hover:scale-105 transform;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent hover:bg-white/10 text-gold-400 border border-gold-500/50 font-medium py-3 px-6 rounded-lg transition-all duration-300;
+    @apply hover:border-gold-400 hover:text-gold-300;
+  }
+  
+  /* Role-specific buttons with new theme */
+  .btn-tank {
+    @apply bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-obsidian-950 font-medium py-2 px-4 rounded-lg transition-all duration-300 shadow-gold;
+  }
+  
+  .btn-healer {
+    @apply bg-gradient-to-r from-white to-gray-100 hover:from-gray-100 hover:to-white text-obsidian-950 font-medium py-2 px-4 rounded-lg transition-all duration-300;
+    box-shadow: 0 4px 14px 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-dps {
+    @apply bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300;
+    box-shadow: 0 4px 14px 0 rgba(220, 38, 38, 0.4);
+  }
+  
+  /* Premium Card Styles */
+  .card {
+    @apply bg-obsidian-900/80 backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300;
+  }
+  
+  .card:hover {
+    @apply border-gold-500/30 shadow-lg;
+  }
+  
+  .card-premium {
+    @apply bg-obsidian-900/85 backdrop-blur-sm border border-gold-500/20 rounded-xl shadow-lg transition-all duration-300;
+  }
+  
+  .card-premium:hover {
+    @apply border-gold-500/40 shadow-xl shadow-gold-500/10;
+  }
+  
+  /* Form Elements */
+  .input {
+    @apply bg-obsidian-800/50 border border-gold-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all duration-300;
+    @apply hover:border-gold-500/50;
+    backdrop-filter: blur(10px);
+  }
+  
+  .select {
+    @apply bg-obsidian-800/50 border border-gold-500/30 rounded-lg px-4 py-3 text-white;
+    @apply focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all duration-300;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Role Styling */
+  .role-tank {
+    @apply text-gold-400;
+  }
+  
+  .role-healer {
+    @apply text-white;
+  }
+  
+  .role-dps {
+    @apply text-red-400;
+  }
+  
+  .bg-role-tank {
+    @apply bg-gradient-to-r from-gold-500/20 to-gold-600/20 border border-gold-500/30;
+  }
+  
+  .bg-role-healer {
+    @apply bg-gradient-to-r from-white/20 to-gray-100/20 border border-white/30;
+  }
+  
+  .bg-role-dps {
+    @apply bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  
+  /* Premium Text Effects */
+  .text-gold-glow {
+    @apply text-gold-400;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+  
+  .text-premium {
+    background: linear-gradient(135deg, #fbbf24 0%, #ffffff 50%, #fbbf24 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  /* Navigation enhancements */
+  .nav-link {
+    @apply text-gray-300 hover:text-gold-400 transition-colors duration-300 relative;
+  }
+  
+  .nav-link.active {
+    @apply text-gold-400;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+}
+
+/* Custom WoW-inspired borders and effects */
+.wow-border {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24) 1;
+  position: relative;
+}
+
+.wow-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(4px);
+}
+
+.mythic-gradient {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+}
+
+.premium-gradient {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 30%, #fbbf24 100%);
+}
+
+.score-gradient {
+  background: linear-gradient(90deg, #16a34a 0%, #fbbf24 50%, #dc2626 100%);
+}
+
+/* Loading animations */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Floating elements */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.floating:nth-child(3) {
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(26, 26, 26, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+/* Hover glow effects */
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+} 
